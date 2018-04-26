@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: 'footer',
+    name: 'blogfooter',
     data () {
       return {
         msg: 'Welcome to Your Vue.js App',

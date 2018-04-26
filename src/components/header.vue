@@ -4,7 +4,7 @@
         <div class="header-container">
         <div style="float: left;width: 75%;height: 100%;">
           <div class="header-logo clearfloat">
-            <a href="">
+            <a href="/">
               <p> <span>Zy</span>xin</p>
             </a>
           </div>
@@ -40,20 +40,17 @@
 
 
 <script>
-  import Home from './home'
-  import Article from './article'
-  import Message from './message'
-  import Other from './other'
+
 
   export default {
-    name: 'header',
+    name: 'blogheader',
     data() {
       return {
         header_nav_items: [
-          {label: '首页', path: '', isactive: true},
-          {label: '文章', path: 'Article', isactive: false},
-          {label: '留言', path: 'Message', isactive: false},
-          {label: '其他', path: 'Other', isactive: false},
+          {label: '首页', path: '', isactive: false},
+          {label: '文章', path: 'article', isactive: false},
+          {label: '留言', path: 'message', isactive: false},
+          {label: '其他', path: 'other', isactive: false},
         ],
         header_login_items: [
           {label: '立即登录', isactive: false},
@@ -62,12 +59,34 @@
       }
     },
     components: {
-      Home,
-      Article,
-      Message,
-      Other
+
+    },
+    created () {
+      let that = this
+      that.initData()
     },
     methods: {
+      initData: function () {
+        let that = this
+
+        if ( this.$route.fullPath === "/")
+        {
+          this.header_nav_items[0].isactive = true
+        }
+        else if ( this.$route.fullPath === "/article")
+        {
+          this.header_nav_items[1].isactive = true
+        }
+        else if ( this.$route.fullPath === "/message")
+        {
+          this.header_nav_items[2].isactive = true
+        }
+        else if ( this.$route.fullPath === "/other")
+        {
+          this.header_nav_items[3].isactive = true
+        }
+
+      },
       toggle: function (items, item) {
         for (var x in items) {
           if (items[x] == item) {

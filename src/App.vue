@@ -1,7 +1,7 @@
 
 <template>
   <div id="app">
-    <Header></Header>
+    <my-header></my-header>
     <div class="public-container">
       <div class="left">
         <router-view></router-view>
@@ -10,13 +10,13 @@
         <Constsider></Constsider>
       </div>
     </div>
-    <Footer></Footer>
+    <my-footer></my-footer>
   </div>
 </template>
 
 <script>
-  import Header from './components/header'
-  import Footer from './components/footer'
+  import myHeader from './components/header'
+  import myFooter from './components/footer'
   import Constsider from './components/constsider.vue'
 
   export default {
@@ -27,8 +27,8 @@
       }
     },
     components: {
-      Header,
-      Footer,
+      myHeader,
+      myFooter,
       Constsider
     }
   }

@@ -1,5 +1,6 @@
 <template>
   <div class="navdate">
+    <my-showvisitnum> </my-showvisitnum>
     <my-time> </my-time>
     <my-date> </my-date>
   </div>
@@ -7,9 +8,10 @@
 
 
 <script>
+  import myShowvisitnum from './constsider/showvisitnum.vue'
+  import myDate from './constsider/compdate.vue'
+  import myTime from './constsider/comptime.vue'
 
-  import myDate from './compdate.vue'
-  import myTime from './comptime.vue'
   export default {
     name: 'constsider',
     data () {
@@ -18,6 +20,7 @@
       }
     },
     components :{
+      myShowvisitnum,
       myDate,
       myTime
     }

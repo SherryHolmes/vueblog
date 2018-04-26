@@ -10,16 +10,8 @@ import Other from '@/components/other'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'content',
-      component: Home,
-      beforeEnter: (to, from, next) => {
-        document.title = '辛宗彦的主页'
-        next()
-      }
-    },
     {
       path: '/',
       name: 'home',
@@ -30,7 +22,7 @@ export default new Router({
       }
     },
     {
-      path: '/Article',
+      path: '/article',
       name: 'article',
       component: Article,
       beforeEnter: (to, from, next) => {
@@ -39,7 +31,7 @@ export default new Router({
       }
     },
     {
-      path: '/Message',
+      path: '/message',
       name: 'message',
       component: Message,
       beforeEnter: (to, from, next) => {
@@ -48,7 +40,7 @@ export default new Router({
       }
     },
     {
-      path: '/Other',
+      path: '/other',
       name: 'Other',
       component: Other,
       beforeEnter: (to, from, next) => {

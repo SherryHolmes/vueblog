@@ -10,7 +10,16 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api': {   //这里是我配置的名字
+        target: 'http://localhost:8000/api', //这个路径是我代理到本地tp框架里面
+        changeOrigin: true, //开启代理
+        pathRewrite: {
+          '^/api': ''//这里重写路径/run就代理到对应地址
+        }
+      }
+
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

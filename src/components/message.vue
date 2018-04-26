@@ -16,7 +16,7 @@
 
 
     export default {
-      name: 'messagge',
+      name: 'mainmessagge',
       data(){
         return {
           text:"",
