@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1><a href="/Port(V3.0).zip" download="Port(V3.0).zip">小南瓜串口下载</a></h1>
+    <h1><a href="../../Port(V3.0).zip" download="Port(V3.0).zip">小南瓜串口下载</a></h1>
   </div>
 </template>
 
