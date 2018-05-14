@@ -10,7 +10,7 @@
         <Constsider></Constsider>
       </div>
     </div>
-    <my-footer></my-footer>
+    <!--my-footer></my-footer-->
   </div>
 </template>
 
@@ -59,7 +59,7 @@
     overflow: hidden;
   }
   .right {
-    float: left;
+    float: right;
     width: 250px;
     height:100%;
     overflow: hidden;

@@ -40,7 +40,10 @@
 
 
 <script>
-
+  import myHome from './home.vue'
+  import myArticle from './article.vue'
+  import myMessage from './message.vue'
+  import myOther from './other.vue'
 
   export default {
     name: 'blogheader',
@@ -59,7 +62,10 @@
       }
     },
     components: {
-
+      myHome,
+      myArticle,
+      myMessage,
+      myOther,
     },
     created () {
       let that = this
