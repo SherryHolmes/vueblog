@@ -172,7 +172,7 @@
     outline:none;
     width:680px;
     max-width:680px;
-    height:25px;
+
     border:0px;
     font-size:14px;
     font-family: Tahoma,Verdana,宋体,Fixedsys;
@@ -192,7 +192,7 @@
     resize: none;
     width:690px;
     max-width:690px;
-    height:100px;
+    height:200px;
     max-height:600px;
     font-size:14px;
     font-family: Tahoma,Verdana,宋体,Fixedsys;
