@@ -1,7 +1,7 @@
 <template>
-  <div id="clock">
-    <p class="date">{{ cdate }}</p>
-    <p class="time">{{ ctime }}</p>
+  <div id="myclock">
+    <p class="mydate">{{ cdate }}</p>
+    <p class="mytime">{{ ctime }}</p>
   </div>
 </template>
 
@@ -47,25 +47,26 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-  #clock {
-    background: #009A61;;
+  #myclock {
+    background: #009A61;
     font-family: 'Share Tech Mono', monospace;
     text-align: center;
-    width:198px;
-    height:56px;
+    width:218px;
+    height:76px;
     margin-top: 10px;
-    padding:10px;
+    padding:10px ;
     color: #daf6ff;
     text-shadow: 0 0 20px #0aafe6, 0 0 20px rgba(10, 175, 230, 0);
     border-radius: 4px;
   }
-  #clock .time {
+
+  #myclock .mytime {
     letter-spacing: 0.05em;
     font-size: 20px;
     margin: 0;
     padding: 0;
   }
-  #clock .date {
+  #myclock .mydate {
     letter-spacing: 0.05em;
     margin: 0;
     font-size: 20px;

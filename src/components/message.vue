@@ -27,27 +27,22 @@
         this.arr.splice(index, 1)
       }
     }
---> <h1 style="margin-left: 20px">留言板</h1>
+-->
+    <h1 style="margin-left: 20px">留言板</h1>
     <div v-for="item in message_list">
       <div class="commonboard">
         <div class="title">
-          <div class="author">
-            {{item.author}} :
-          </div>
-          <div class="date">
-            {{item.date}}
-          </div>
+          <div class="author">{{item.author}} :</div>
+          <div class="date">{{item.date}}</div>
         </div>
-        <textarea readonly="readonly" class="contnt">{{item.message}}</textarea>
-        <div class="request">
-          <p>回复</p>
-        </div>
+        <Input type="textarea" class="contnt" readonly :placeholder="item.message" :autosize="{minRows: 1,maxRows: 20}" > </Input>
+        <Button class="request">回复</Button>
       </div>
     </div>
     <div class="editboard">
       <h2 style="margin-left: 10px">留言区</h2>
-      <textarea  class="editarea" v-model="edittext"></textarea>
-      <button  class="submitbutton" v-on:click="tabs">提交留言</button>
+      <Input type="textarea"  class="editarea" v-model="edittext" :autosize="{minRows: 9,maxRows: 9}" placeholder="请输入留言信息..." > </Input>
+      <Button type="success" class="submitbutton" v-on:click="tabs">提交留言</Button>
     </div>
   </div>
 </template>
@@ -65,9 +60,13 @@
         editdate: '',
         ctime: '',
         cdate: '',
+        value7: '',
+        value8: ''
       }
     },
-    components: {},
+    components: {
+
+    },
     created() {
       let that = this;
       that.initData();
@@ -75,7 +74,7 @@
     methods: {
       initData: function () {
         let that = this;
-
+        this.edittext = '';
         axios({
           method: 'get',
           url: '/api/get_messageList',
@@ -144,8 +143,7 @@
     padding:0;
   }
   .commonboard {
-    margin: 10px 10px ;
-    padding:10px 10px ;
+    margin: 10px ;
     background: #f3f3f3;
     border-radius: 4px;
     width: 720px;
@@ -154,8 +152,8 @@
   }
   .commonboard .title{
     border-bottom: 1px solid #ddd;
-    width: 100%;
     height: 25px;
+    margin:10px;
   }
   .commonboard .title .author {
     float:left;
@@ -165,23 +163,22 @@
     float:right;
     margin-right:5px;
   }
-  .commonboard textarea.contnt{
-    margin: 10px 20px;
+  .commonboard .contnt{
+    margin: 0px 20px;
     background:transparent;
     resize: none;
     outline:none;
     width:680px;
     max-width:680px;
-
     border:0px;
     font-size:14px;
     font-family: Tahoma,Verdana,宋体,Fixedsys;
     line-height:150%;
-    overflow-y:visible;
   }
+
   .editboard {
-    margin: 10px 10px ;
-    padding:10px 10px ;
+    margin: 10px;
+    padding:10px;
     background: #f3f3f3;
     border-radius: 4px;
     width: 720px;
@@ -190,7 +187,7 @@
   .editboard .editarea {
     margin: 10px 20px 10px 10px;
     resize: none;
-    width:690px;
+    width:680px;
     max-width:690px;
     height:200px;
     max-height:600px;
@@ -201,12 +198,13 @@
   }
   .commonboard .request{
     float:right ;
-    margin-right: 10px;
+    margin: 10px 30px;
+    padding:3px 10px;
   }
   .submitbutton{
-
     float: right;
     margin-right: 20px;
   }
 
 </style>
+

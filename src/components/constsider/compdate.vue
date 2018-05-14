@@ -135,8 +135,8 @@
     font-size:9pt;
     background-color:#EEE;
     text-align:center;
-    width:198px;
-    height:168px;
+    width:218px;
+    height:188px;
     margin:10px 0;
     padding:10px;
     line-height:1.5em;
