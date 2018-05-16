@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="layout">
-      <div class="my-ivu-layout">
+      <div class="flex-direction-colum">
         <my-header></my-header>
-        <Layout>
+        <div class="flex-direction-row">
           <Sider hide-trigger :style="{background: '#fff'}">
             <Menu active-name="1-2" theme="light" width="auto" :open-names="['1']">
               <Submenu name="1">
@@ -34,7 +34,7 @@
             </Menu>
           </Sider>
 
-          <div class="my-ivu-layout" style="padding: 24px 24px 0 24px;">
+          <div class="flex-direction-colum" style="padding: 24px 24px 0 24px;">
             <div style=" flex: auto;  padding: 24px; min-height: 100%; background: rgb(255, 255, 255);">
               <router-view></router-view>
             </div>
@@ -42,9 +42,9 @@
           <div style="min-width: 250px; max-width: 250px; flex: 0 0 250px; background: #fff;">
             <Constsider></Constsider>
           </div>
-        </Layout>
+        </div>
       </div>
-      <div class="my-ivu-layout">
+      <div class="flex-direction-colum">
         <div class="my-ivu-layout-footer">
           <my-footer></my-footer>
         </div>
@@ -74,13 +74,17 @@
 </script>
 
 <style>
-  .my-ivu-layout {
+
+  .flex-direction-colum{
     display: flex;
     flex-direction: column;
     flex: auto;
-    background: #f5f7f9;
   }
-
+  .flex-direction-row{
+    display: flex;
+    flex-direction: row;
+    flex: auto;
+  }
   .layout {
     border: 0px solid #d7dde4;
     background: #f5f7f9;
