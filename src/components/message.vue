@@ -35,7 +35,7 @@
           <div class="author">{{item.author}} :</div>
           <div class="date">{{item.date}}</div>
         </div>
-        <Input type="textarea" class="contnt" readonly :placeholder="item.message" :autosize="{minRows: 1,maxRows: 20}" > </Input>
+        <Input type="textarea" class="contnt"  readonly :placeholder="item.message" :autosize="{minRows: 1,maxRows: 20}" > </Input>
         <Button class="request">回复</Button>
       </div>
     </div>

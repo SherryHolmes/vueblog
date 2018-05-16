@@ -1,41 +1,35 @@
 <template>
-  <div>
-    <Menu mode="horizontal" theme="dark" active-name="1" @on-select="linkChange">
-      <div class="layout-logo">
-        <a href="/">
-          <p><span>Zy</span>xin</p>
-        </a>
-      </div>
-      <div class="layout-nav ">
-        <template v-for="item in header_nav_items">
-          <MenuItem :name=item.path>
-            <div class="header_nav" @click="toggle(header_nav_items,item)">
+  <div class="layout-header">
+    <div style="margin-top: 2px;">
+      <Menu mode="horizontal" theme="dark" active-name="1" @on-select="linkChange">
+        <div class="layout-logo">
+          <a href="/">
+            <p><span>Zy</span>xin</p>
+          </a>
+        </div>
+        <div class="layout-nav">
+          <template v-for="item in header_nav_items">
+            <MenuItem :name=item.path>
+              <div class="header_nav" @click="toggle(header_nav_items,item)">
                 <span :class="{ header_nav_active: item.isactive }">
                   <Icon :type=item.type></Icon> {{item.label}}
                 </span>
-            </div>
-          </MenuItem>
-        </template>
-      </div>
-    </Menu>
-
-    <div class="public-header clearfloat ">
-      <div class="header-container">
-
-        <div style="float: left;width: 25%;height: 100%;">
-          <div class="header-login clearfloat">
-            <ul>
-              <template v-for="item in header_login_items">
-                <li class="navmenu" @click="toggle(header_login_items,item)">
-                  <router-link to="" class="styie" :class="[ { header_login_noacthover: !item.isactive },{ header_login_active: item.isactive }]">
-                    <span style="font-size: 16px"> {{item.label}} </span>
-                  </router-link>
-                </li>
-              </template>
-            </ul>
-          </div>
+              </div>
+            </MenuItem>
+          </template>
         </div>
-      </div>
+        <div class="layout-nav" style="float: right; margin-right: 50px;">
+          <template v-for="item in header_login_items">
+            <MenuItem :name=item.path>
+              <div class="header_nav" @click="toggle(header_login_items,item)">
+              <span style="font-size: 16px">
+                <Icon :type=item.type></Icon>{{item.label}}
+              </span>
+              </div>
+            </MenuItem>
+          </template>
+        </div>
+      </Menu>
     </div>
   </div>
 </template>
@@ -48,18 +42,18 @@
   import myOther from './other.vue'
 
   export default {
-    name: 'blogheader',
+    name: 'header',
     data() {
       return {
         header_nav_items: [
-          {label: '首页', type: 'ios-navigate', isactive: false, path: '/'},
+          {label: '首页', type: 'ios-home', isactive: false, path: '/'},
           {label: '文章', type: 'ios-paper', isactive: false, path: 'article'},
-          {label: '留言', type: 'ios-analytics', isactive: false, path: 'message'},
-          {label: '其他', type: 'ios-keypad', isactive: false, path: 'other'},
+          {label: '留言', type: 'ios-compose', isactive: false, path: 'message'},
+          {label: '其他', type: 'ios-crop-strong', isactive: false, path: 'other'},
         ],
         header_login_items: [
-          {label: '立即登录', isactive: false},
-          {label: '免费注册', isactive: true},
+          {label: '登录', type: 'person', isactive: false},
+          {label: '注册', type: 'person-add', isactive: true},
         ],
       }
     },
@@ -113,14 +107,19 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .layout-header {
+    background: #495060;
+    padding: 0 50px;
+    height: 64px;
+    line-height: 64px;
+  }
+
   .layout-logo {
     width: 100px;
-
     background: transparent;
     border-radius: 3px;
     float: left;
     position: relative;
-
     left: 20px;
     text-align: center;
 
@@ -143,7 +142,7 @@
 
   .layout-nav {
     float: left;
-    width: 500px;
+
     margin: 0 auto;
     margin-left: 50px;
   }
@@ -161,29 +160,6 @@
     color: #fff;
   }
 
-  .header_login_active {
-    color: #fff;
-    background: #009A61;
-  }
-
-  .header_login_active:hover {
-    background-color: #006741;
-    border-color: #00432a;
-  }
-
-  .header_login_noacthover:hover {
-    background-color: #F3F3F3;
-  }
-
-
-
-
-  .header-container {
-    margin: 0 auto;
-    width: 1000px;
-    height: 100%;
-  }
-
   @keyframes change {
     0% {
       text-shadow: 0 0 40px red;
@@ -196,27 +172,5 @@
     }
   }
 
-  .public-header .header-login {
-    height: 64px;
-    line-height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .public-header .header-login li {
-    float: right;
-  }
-
-  .navmenu {
-    float: left;
-    margin: 0 4px;
-    border-radius: 4px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-  }
 
 </style>

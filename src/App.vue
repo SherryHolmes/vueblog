@@ -1,10 +1,8 @@
 <template>
   <div>
     <div class="layout">
-      <Layout>
-        <Header style="height: 60px;">
-          <my-header></my-header>
-        </Header>
+      <div class="my-ivu-layout">
+        <my-header></my-header>
         <Layout>
           <Sider hide-trigger :style="{background: '#fff'}">
             <Menu active-name="1-2" theme="light" width="auto" :open-names="['1']">
@@ -35,28 +33,22 @@
               </Submenu>
             </Menu>
           </Sider>
-          <Layout :style="{padding: '0 24px 24px'}">
-            <Breadcrumb :style="{margin: '24px 0'}">
-              <BreadcrumbItem>Home</BreadcrumbItem>
-              <BreadcrumbItem>Components</BreadcrumbItem>
-              <BreadcrumbItem>Layout</BreadcrumbItem>
-            </Breadcrumb>
-            <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
-              <div class="main-content">
-                <router-view></router-view>
-              </div>
-              <div class="main-sider">
-                <Constsider></Constsider>
-              </div>
-            </Content>
-          </Layout>
+
+          <div class="my-ivu-layout" style="padding: 24px 24px 0 24px;">
+            <div style=" flex: auto;  padding: 24px; min-height: 100%; background: rgb(255, 255, 255);">
+              <router-view></router-view>
+            </div>
+          </div>
+          <div style="min-width: 250px; max-width: 250px; flex: 0 0 250px; background: #fff;">
+            <Constsider></Constsider>
+          </div>
         </Layout>
-      </Layout>
-      <Layout>
-        <Footer>
+      </div>
+      <div class="my-ivu-layout">
+        <div class="my-ivu-layout-footer">
           <my-footer></my-footer>
-        </Footer>
-      </Layout>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -82,6 +74,13 @@
 </script>
 
 <style>
+  .my-ivu-layout {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    background: #f5f7f9;
+  }
+
   .layout {
     border: 0px solid #d7dde4;
     background: #f5f7f9;
@@ -91,42 +90,15 @@
   }
 
   body {
-    margin: 0 auto;
-    padding: 0;
     font-family: -apple-system, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft Yahei", sans-serif;
-    font-size: 14px;
-    line-height: 1.42858;
     color: #757575;
-    background-color: #fff;
-    -webkit-font-smoothing: antialiased;
-    width: 100%;
-
   }
 
-  .main-header {
+  .my-ivu-layout-footer {
     background: #f5f7f9;
-    margin: 0 auto;
-    width: 100%;
+    padding: 24px 50px;
+    color: #495060;
+    font-size: 14px;
   }
 
-  .public-container {
-    margin: 0 auto;
-    width: 1000px;
-    height: 100%;
-  }
-
-  .main-content {
-    float: left;
-    width: 750px;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .main-sider {
-    float: right;
-    #background: black;
-    width: 250px;
-    height: 100%;
-    overflow: hidden;
-  }
 </style>
