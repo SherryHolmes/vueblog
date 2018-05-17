@@ -2,33 +2,49 @@
   <div class="layout-header">
     <div style="margin-top: 2px;">
       <Menu mode="horizontal" theme="dark" active-name="1" @on-select="linkChange">
-        <div class="layout-logo">
-          <a href="/">
-            <p><span>Zy</span>xin</p>
-          </a>
-        </div>
-        <div class="layout-nav">
-          <template v-for="item in header_nav_items">
-            <MenuItem :name=item.path>
-              <div class="header_nav" @click="toggle(header_nav_items,item)">
-                <span :class="{ header_nav_active: item.isactive }">
-                  <Icon :type=item.type></Icon> {{item.label}}
-                </span>
-              </div>
-            </MenuItem>
-          </template>
-        </div>
-        <div class="layout-nav" style="float: right; margin-right: 50px;">
-          <template v-for="item in header_login_items">
-            <MenuItem :name=item.path>
-              <div class="header_nav" @click="toggle(header_login_items,item)">
-              <span style="font-size: 16px">
-                <Icon :type=item.type></Icon>{{item.label}}
-              </span>
-              </div>
-            </MenuItem>
-          </template>
-        </div>
+        <Row type="flex" justify="center">
+          <Col :xs="6" :sm="4" :md="4" :lg="2" style="display: flex; justify-content: center;">
+          <div class="layout-logo">
+            <a href="/">
+              <p><span>Zy</span>xin</p>
+            </a>
+          </div>
+          </Col>
+          <Col :xs="0" :sm="0" :md="0" :lg="1">
+          </Col>
+          <Col :xs="18" :sm="12" :md="8" :lg="6">
+          <div class="layout-nav" style="width: 100%;">
+            <Row type="flex" justify="center">
+              <template v-for="item in header_nav_items">
+                <Col :xs="6" :sm="6" :md="6" :lg="6" style="display: flex; justify-content: center; ">
+                <MenuItem :name=item.path style="padding: 0 ;">
+                  <div class="header_nav" @click="toggle(header_nav_items,item)">
+                    <span :class="{ header_nav_active: item.isactive }">
+                      <Icon :type=item.type></Icon> {{item.label}}
+                    </span>
+                  </div>
+                </MenuItem>
+                </Col>
+              </template>
+            </Row>
+          </div>
+          </Col>
+          <Col :xs="0" :sm="8" :md="11" :lg="12">
+          <div class="layout-nav" style="float: right; ">
+            <template v-for="item in header_login_items">
+              <MenuItem :name=item.path style="padding: 0 15px;">
+                <div class="header_nav" @click="toggle(header_login_items,item)">
+                  <span style="font-size: 16px;padding: 0;">
+                    <Icon :type=item.type></Icon>{{item.label}}
+                  </span>
+                </div>
+              </MenuItem>
+            </template>
+          </div>
+          </Col>
+          <Col :xs="0" :sm="8" :md="1" :lg="0">
+          </Col>
+        </Row>
       </Menu>
     </div>
   </div>
@@ -109,18 +125,17 @@
 <style scoped>
   .layout-header {
     background: #495060;
-    padding: 0 50px;
+    padding: 0;
     height: 64px;
     line-height: 64px;
   }
 
   .layout-logo {
-    width: 100px;
     background: transparent;
     border-radius: 3px;
     float: left;
     position: relative;
-    left: 20px;
+
     text-align: center;
 
   }
@@ -143,8 +158,6 @@
   .layout-nav {
     float: left;
 
-    margin: 0 auto;
-    margin-left: 50px;
   }
 
   .header_nav {
