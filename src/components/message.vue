@@ -1,47 +1,51 @@
 <template>
   <div>
-<!--
-    <div class="">
-      <p class="small">留言区</p>
-      <input type="text" v-model="text"/>
-      <button v-on:click="tabs">提交留言</button>
-    </div>
+    <!--
+        <div class="">
+          <p class="small">留言区</p>
+          <input type="text" v-model="text"/>
+          <button v-on:click="tabs">提交留言</button>
+        </div>
 
-    <div class="text">
-      <div v-for="(name,index) in arr" v-on:click="dele(index)">{{name.text}}</div>
-      /* dele的index是下标，用来删除我们点击的信息 */
-    </div>
-    data() {
-      return {
-        text: "",
-        arr: []
-      }
-    },
-    methods: {
-      tabs: function () {
-        this.arr.push({text: this.text});
-        this.text = "";
-        console.log(this.arr)
-      },
-      dele: function (index) {
-        this.arr.splice(index, 1)
-      }
-    }
--->
-    <h1 style="margin-left: 20px">留言板</h1>
+        <div class="text">
+          <div v-for="(name,index) in arr" v-on:click="dele(index)">{{name.text}}</div>
+          /* dele的index是下标，用来删除我们点击的信息 */
+        </div>
+        data() {
+          return {
+            text: "",
+            arr: []
+          }
+        },
+        methods: {
+          tabs: function () {
+            this.arr.push({text: this.text});
+            this.text = "";
+            console.log(this.arr)
+          },
+          dele: function (index) {
+            this.arr.splice(index, 1)
+          }
+        }
+    -->
+    <h1 style="margin-left: 5%">留言板</h1>
     <div v-for="item in message_list">
       <div class="commonboard">
         <div class="title">
           <div class="author">{{item.author}} :</div>
           <div class="date">{{item.date}}</div>
         </div>
-        <Input type="textarea" class="contnt"  readonly :placeholder="item.message" :autosize="{minRows: 1,maxRows: 20}" > </Input>
+        <div >
+        <Input type="textarea" class="contnt" readonly :placeholder="item.message"
+               :autosize="{minRows: 1,maxRows: 20}"> </Input>
         <Button class="request">回复</Button>
+        </div>
       </div>
     </div>
     <div class="editboard">
-      <h2 style="margin-left: 10px">留言区</h2>
-      <Input type="textarea"  class="editarea" v-model="edittext" :autosize="{minRows: 9,maxRows: 9}" placeholder="请输入留言信息..." > </Input>
+      <h2 style="margin: 1% 3%">留言区</h2>
+      <Input type="textarea" class="editarea" v-model="edittext" :autosize="{minRows: 9,maxRows: 9}"
+             placeholder="请输入留言信息..."> </Input>
       <Button type="success" class="submitbutton" v-on:click="tabs">提交留言</Button>
     </div>
   </div>
@@ -64,9 +68,7 @@
         value8: ''
       }
     },
-    components: {
-
-    },
+    components: {},
     created() {
       let that = this;
       that.initData();
@@ -87,7 +89,7 @@
             console.log(response);
           });
       },
-      zeroPadding: function(num, digit) {
+      zeroPadding: function (num, digit) {
         var zero = '';
         for (var i = 0; i < digit; i++) {
           zero += '0';
@@ -138,72 +140,76 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-  p{
-    margin:0;
-    padding:0;
+  p {
+    margin: 0;
+    padding: 0;
   }
+
   .commonboard {
-    margin: 10px ;
+    margin: 2%;
     background: #f3f3f3;
     border-radius: 4px;
-    width: 720px;
     overflow: hidden;
-
   }
-  .commonboard .title{
+
+  .commonboard .title {
     border-bottom: 1px solid #ddd;
     height: 25px;
-    margin:10px;
+    margin: 1%;
   }
+
   .commonboard .title .author {
-    float:left;
-    margin-left:5px;
+    float: left;
+    margin-left: 1%;
   }
+
   .commonboard .title .date {
-    float:right;
-    margin-right:5px;
+    float: right;
+    margin-right: 1%;
   }
-  .commonboard .contnt{
-    margin: 0px 20px;
-    background:transparent;
+
+  .commonboard .contnt {
+    margin: 0 2%;
+    width:96%;
+    background: transparent;
     resize: none;
-    outline:none;
-    width:680px;
-    max-width:680px;
-    border:0px;
-    font-size:14px;
-    font-family: Tahoma,Verdana,宋体,Fixedsys;
-    line-height:150%;
+    outline: none;
+    border: 0px;
+    font-family: Tahoma, Verdana, 宋体, Fixedsys;
+    line-height: 150%;
   }
 
   .editboard {
-    margin: 10px;
-    padding:10px;
+    margin: 2%;
+
     background: #f3f3f3;
     border-radius: 4px;
-    width: 720px;
+    width: 96%;
     overflow: hidden;
   }
+
   .editboard .editarea {
-    margin: 10px 20px 10px 10px;
+    margin: 0 2% ;
     resize: none;
-    width:680px;
-    max-width:690px;
-    height:200px;
-    max-height:600px;
-    font-size:14px;
-    font-family: Tahoma,Verdana,宋体,Fixedsys;
-    line-height:150%;
-    overflow-y:visible;
+    width: 96%;
+    max-width: 96%;
+    height: 200px;
+    #max-height: 600px;
+    font-size: 14px;
+    font-family: Tahoma, Verdana, 宋体, Fixedsys;
+    line-height: 150%;
+    overflow-y: visible;
   }
-  .commonboard .request{
-    float:right ;
-    margin: 10px 30px;
-    padding:3px 10px;
-  }
-  .submitbutton{
+
+  .commonboard .request {
     float: right;
-    margin-right: 20px;
+    margin: 1% 3%;
+    padding: 5px 10px;
+  }
+
+  .submitbutton {
+    float: right;
+    margin: 1% 3%;
   }
 
 </style>

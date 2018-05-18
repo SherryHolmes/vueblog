@@ -3,16 +3,18 @@
     <div style="margin-top: 2px;">
       <Menu mode="horizontal" theme="dark" active-name="1" @on-select="linkChange">
         <Row type="flex" justify="center">
-          <Col :xs="6" :sm="4" :md="4" :lg="2" style="display: flex; justify-content: center;">
+          <Col :xs="0" :sm="0" :md="0" :lg="1" >
+          </Col>
+          <Col :xs="6" :sm="4" :md="4" :lg="2" style="display: flex; justify-content: center; ">
           <div class="layout-logo">
             <a href="/">
               <p><span>Zy</span>xin</p>
             </a>
           </div>
           </Col>
-          <Col :xs="0" :sm="0" :md="0" :lg="1">
+          <Col :xs="0" :sm="0" :md="0" :lg="1" >
           </Col>
-          <Col :xs="18" :sm="12" :md="8" :lg="6">
+          <Col :xs="18" :sm="12" :md="8" :lg="5" >
           <div class="layout-nav" style="width: 100%;">
             <Row type="flex" justify="center">
               <template v-for="item in header_nav_items">
@@ -29,7 +31,7 @@
             </Row>
           </div>
           </Col>
-          <Col :xs="0" :sm="8" :md="11" :lg="12">
+          <Col :xs="0" :sm="8" :md="11" :lg="12" >
           <div class="layout-nav" style="float: right; ">
             <template v-for="item in header_login_items">
               <MenuItem :name=item.path style="padding: 0 15px;">
@@ -42,7 +44,7 @@
             </template>
           </div>
           </Col>
-          <Col :xs="0" :sm="8" :md="1" :lg="0">
+          <Col :xs="0" :sm="0" :md="1" :lg="1" >
           </Col>
         </Row>
       </Menu>
@@ -135,9 +137,7 @@
     border-radius: 3px;
     float: left;
     position: relative;
-
     text-align: center;
-
   }
 
   .layout-logo p {
