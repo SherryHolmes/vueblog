@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="menu">
       <div class="menumainicon">
         <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '20px 10px',color: '#fff'}"
@@ -10,36 +9,38 @@
       <Sider ref="side1" hide-trigger collapsible :collapsed-width="0" v-model="isCollapsed "
              :style="{background: '#fff' }">
         <div v-if="isCollapsed === false">
-          <div class="sidebar-overlay active" @click="collapsedSider()"> </div>
+          <div class="sidebar-overlay active" @click="collapsedSider()"></div>
         </div>
-        <Menu active-name="1-2" theme="light" width="auto" min-height="1000" accordion :open-names="['1']">
-          <div style="overflow: hidden;">
-            <Submenu name="1">
-              <template slot="title">
-                <Icon type="ios-navigate"></Icon>
-                Item 1
-              </template>
-              <MenuItem name="1-1">Option 1</MenuItem>
-              <MenuItem name="1-2">Option 2</MenuItem>
-              <MenuItem name="1-3">Option 3</MenuItem>
-            </Submenu>
-          </div>
+        <!--Menu active-name="1-2" theme="light" width="auto" min-height="1000" accordion :open-names="['1']"-->
+        <Menu theme="light" width="auto" accordion>
+          <Submenu name="1">
+            <template slot="title">
+              <Icon type="ios-navigate"></Icon>
+              看漫画
+            </template>
+            <MenuItem name="1-1">犬夜叉</MenuItem>
+            <MenuItem name="1-2">名侦探柯南</MenuItem>
+            <MenuItem name="1-3">火影忍者</MenuItem>
+          </Submenu>
+
           <Submenu name="2">
             <template slot="title">
               <Icon type="ios-keypad"></Icon>
-              Item 2
+              看小说
             </template>
-            <MenuItem name="2-1">Option 1</MenuItem>
-            <MenuItem name="2-2">Option 2</MenuItem>
+            <MenuItem name="2-1">超魔杀帝国</MenuItem>
+            <MenuItem name="2-2">幻城</MenuItem>
           </Submenu>
+
           <Submenu name="3">
             <template slot="title">
               <Icon type="ios-analytics"></Icon>
-              Item 3
+              看视频
             </template>
-            <MenuItem name="3-1">Option 1</MenuItem>
-            <MenuItem name="3-2">Option 2</MenuItem>
+            <MenuItem name="3-1">最新视频</MenuItem>
+            <MenuItem name="3-2">最热视频</MenuItem>
           </Submenu>
+
         </Menu>
       </Sider>
     </div>
@@ -78,7 +79,7 @@
 
 <style scoped>
   .layout {
-    width:100%;
+    width: 100%;
     border: 1px solid #d7dde4;
     background: #f5f7f9;
     position: relative;
