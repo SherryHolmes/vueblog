@@ -4,7 +4,8 @@
       <div class="menumainicon">
         <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '20px 10px',color: '#fff'}"
               type="navicon-round"
-              size="24"></Icon>
+              size="24">
+        </Icon>
       </div>
       <Sider ref="side1" hide-trigger collapsible :collapsed-width="0" v-model="isCollapsed "
              :style="{background: '#fff' }">
@@ -20,9 +21,21 @@
             </template>
             <MenuItem name="1-1">犬夜叉</MenuItem>
             <MenuItem name="1-2">名侦探柯南</MenuItem>
-            <MenuItem name="1-3">火影忍者</MenuItem>
+            <Submenu name="1-3">
+              <template slot="title">火影忍者</template>
+              <Submenu name="1-3-1">
+                <template slot="title">第一部</template>
+                <MenuItem name="1-3-1-1">第一画</MenuItem>
+                <MenuItem name="1-3-1-2">第二画</MenuItem>
+              </Submenu>
+              <Submenu name="1-3-2">
+                <template slot="title">第二部</template>
+                <MenuItem name="1-3-2-1">第一画</MenuItem>
+                <MenuItem name="1-3-2-2">第二画</MenuItem>
+              </Submenu>
+              <MenuItem name="3-2">第二画</MenuItem>
+            </Submenu>
           </Submenu>
-
           <Submenu name="2">
             <template slot="title">
               <Icon type="ios-keypad"></Icon>
