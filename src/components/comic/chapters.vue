@@ -71,7 +71,7 @@
         //this.$route.params.id
         var urlchapter = '/comic/chapters?id='+this.comic_id;
         history.replaceState({}, null, urlchapter);
-
+        //this.$router.push({name:'Comicchapterimgs',params:{id:this.comic_id,num:item.num}});
         this.$router.push({path:'/comic/chapterimgs',query:{id:this.comic_id,num:item.num}});
 
 

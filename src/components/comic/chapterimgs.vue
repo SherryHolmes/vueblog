@@ -1,8 +1,12 @@
 <template>
   <div>
-    <template v-for="item in chapterimgs">
-      <div><img :src="item.url" width="100%"></img></div>
+
+    <template v-for="item in chapterimgs" >
+
+      <img :src="item.url" width="100%"></img>
+
     </template>
+
   </div>
 </template>
 
@@ -47,4 +51,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+  img{
+    vertical-align: middle;
+  }
 </style>
