@@ -5,7 +5,8 @@ import Article from '@/components/article'
 import Home from '@/components/home'
 import Message from '@/components/message'
 import Other from '@/components/other'
-
+import Comicchapters from '@/components/comic/comicchapters.vue'
+import Comicchapterimgs from '@/components/comic/comicchapterimgs.vue'
 
 Vue.use(Router)
 
@@ -47,7 +48,17 @@ export default new Router({
         document.title = '辛宗彦-其他'
         next()
       }
-    }
+    },
+    {
+      path: '/comic/comicchapters',
+      name: 'Comicchapters',
+      component: Comicchapters,
+    },
+    {
+      path: '/comic/comicchapterimgs',
+      name: 'Comicchapterimgs',
+      component: Comicchapterimgs,
+    },
   ]
 })
 

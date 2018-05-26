@@ -1,6 +1,6 @@
 <template>
   <div>
-    <my-menu></my-menu>
+    <!--my-menu></my-menu-->
     <div class="layout">
       <div class="flex-direction-colum">
         <div style="height: 64px; overflow: hidden; background:#495060; z-index: 8;">

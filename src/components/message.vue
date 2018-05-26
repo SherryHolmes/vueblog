@@ -35,10 +35,10 @@
           <div class="author">{{item.author}} :</div>
           <div class="date">{{item.date}}</div>
         </div>
-        <div >
-        <Input type="textarea" class="contnt" readonly :placeholder="item.message"
-               :autosize="{minRows: 1,maxRows: 20}"> </Input>
-        <Button class="request">回复</Button>
+        <div>
+          <Input type="textarea" class="contnt" readonly :placeholder="item.message"
+                 :autosize="{minRows: 1,maxRows: 20}"> </Input>
+          <Button class="request">回复</Button>
         </div>
       </div>
     </div>
@@ -80,14 +80,12 @@
         axios({
           method: 'get',
           url: '/api/get_messageList',
-        })
-          .then(function (response) {
-            //console.log(response);
-            that.message_list = response.data
-          })
-          .catch(function (response) {
-            console.log(response);
-          });
+        }).then(function (response) {
+          //console.log(response);
+          that.message_list = response.data
+        }).catch(function (response) {
+          console.log(response);
+        });
       },
       zeroPadding: function (num, digit) {
         var zero = '';
@@ -170,7 +168,7 @@
 
   .commonboard .contnt {
     margin: 0 2%;
-    width:96%;
+    width: 96%;
     background: transparent;
     resize: none;
     outline: none;
@@ -189,7 +187,7 @@
   }
 
   .editboard .editarea {
-    margin: 0 2% ;
+    margin: 0 2%;
     resize: none;
     width: 96%;
     max-width: 96%;

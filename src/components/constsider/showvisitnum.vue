@@ -32,14 +32,12 @@
         axios({
           method: 'get',
           url: '/api/show_visitnum',
-        })
-          .then(function (response) {
-            //console.log(response);
-            that.ayyy = response.data[0].yyy
-          })
-          .catch(function (response) {
-            console.log(response);
-          });
+        }).then(function (response) {
+          //console.log(response);
+          that.ayyy = response.data[0].yyy
+        }).catch(function (response) {
+          console.log(response);
+        });
       }
     }
   }
