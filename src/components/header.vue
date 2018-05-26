@@ -1,12 +1,14 @@
 <template>
   <div class="layout-header">
     <div style="margin-top: 2px; background:transparent;">
-      <Menu mode="horizontal" theme="dark" active-name="1" @on-select="linkChange">
+      <Menu mode="horizontal" theme="dark" active-name="1">
         <Row type="flex" justify="center">
           <Col :xs="3" :sm="1" :md="0" :lg="0"></Col>
           <Col :xs="3" :sm="3" :md="4" :lg="3" style="display: flex;  justify-content: center">
           <div class="layout-logo">
-            <p><span>Zy</span>xin</p>
+            <a href="/">
+              <p><span>Zy</span>xin</p>
+            </a>
           </div>
           </Col>
           <Col :xs="1" :sm="0" :md="0" :lg="0"></Col>
@@ -15,13 +17,13 @@
             <Row type="flex" justify="center">
               <template v-for="item in header_nav_items">
                 <Col :xs="6" :sm="6" :md="6" :lg="6" style="display: flex; justify-content: center; ">
-                <MenuItem :name=item.path style="padding: 0 ;">
+                <router-link :to=item.path style="padding: 0 ;">
                   <div class="header_nav" @click="toggle(header_nav_items,item)">
                     <span :class="{ header_nav_active: item.isactive }">
                       <Icon :type=item.type></Icon> {{item.label}}
                     </span>
                   </div>
-                </MenuItem>
+                </router-link>
                 </Col>
               </template>
             </Row>
@@ -30,13 +32,14 @@
           <Col :xs="0" :sm="8" :md="13" :lg="13">
           <div class="layout-nav" style="float: right; ">
             <template v-for="item in header_login_items">
-              <MenuItem :name=item.path style="padding: 0 15px;">
+
+              <router-link :to=item.path style="padding: 0 15px;">
                 <div class="header_nav" @click="toggle(header_login_items,item)">
                   <span style="font-size: 16px;padding: 0;">
                     <Icon :type=item.type></Icon>{{item.label}}
                   </span>
                 </div>
-              </MenuItem>
+              </router-link>
             </template>
           </div>
           </Col>
@@ -55,18 +58,18 @@
   import myOther from './other.vue'
 
   export default {
-    name: 'header',
+    name: 'myheader',
     data() {
       return {
         header_nav_items: [
-          {label: '首页', type: 'ios-home', isactive: false, path: '/'},
-          {label: '文章', type: 'ios-paper', isactive: false, path: 'article'},
-          {label: '留言', type: 'ios-compose', isactive: false, path: 'message'},
-          {label: '其他', type: 'ios-crop-strong', isactive: false, path: 'other'},
+          {label: '首页', type: 'ios-home', isactive: false, path: '/', name: 'home'},
+          {label: '文章', type: 'ios-paper', isactive: false, path: '/article', name: 'article'},
+          {label: '留言', type: 'ios-compose', isactive: false, path: '/message', name: 'message'},
+          {label: '其他', type: 'ios-crop-strong', isactive: false, path: '/other', name: 'other'},
         ],
         header_login_items: [
-          {label: '登录', type: 'person', isactive: false},
-          {label: '注册', type: 'person-add', isactive: true},
+          {label: '登录', type: 'person', isactive: false, path: '/'},
+          {label: '注册', type: 'person-add', isactive: true, path: '/'},
         ],
       }
     },

@@ -20,19 +20,21 @@
       }
     },
     created() {
+
       this.comic_id = this.$route.query.id;
       this.chapter_num = this.$route.query.num;
       let that = this;
       that.initData();
     }, methods: {
       initData: function () {
+
         let that = this;
         axios({
           method: 'get',
           url: '/api/get_comic_chapter_imgInfo?id='+ this.comic_id + '&num=' + that.chapter_num,
         }).then(function (response) {
           that.chapterimgs = response.data;
-          console.log(that.chapterimgs);
+          //console.log(that.chapterimgs);
         }).catch(function (response) {
           console.log(response);
         });

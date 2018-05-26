@@ -58,8 +58,8 @@
         //接收参数
         //this.$route.query.id
         //this.$route.params.id
+        this.$router.push({path:'/comic/chapters',query:{id:item.id}});
 
-        this.$router.push({path:'/comic/comicchapters',query:{id:item.id}});
       }
     }
   }

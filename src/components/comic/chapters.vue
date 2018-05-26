@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div>{{comicInfo[0].name}}</div>
-    <div>作者：{{comicInfo[0].author}}</div>
-    <div>介绍：{{comicInfo[0].introduce}}</div>
-    <div><img :src="comicInfo[0].posterurl" width="100%"></img></div>
+    <div>{{comicInfo.name}}</div>
+    <div>作者：{{comicInfo.author}}</div>
+    <div>介绍：{{comicInfo.introduce}}</div>
+    <div><img :src="comicInfo.posterurl" width="100%"></img></div>
 
     <template v-for="item in comicChapters">
       <router-link to="" @click.native="linkChange(item)" class="">
@@ -45,7 +45,7 @@
           method: 'get',
           url: '/api/get_comicInfoByid?id=' + that.comic_id,
         }).then(function (response) {
-          that.comicInfo = response.data;
+          that.comicInfo = response.data[0];
           //console.log(that.comicInfo);
         }).catch(function (response) {
           console.log(response);
@@ -69,8 +69,12 @@
         //接收参数
         //this.$route.query.id
         //this.$route.params.id
+        var urlchapter = '/comic/chapters?id='+this.comic_id;
+        history.replaceState({}, null, urlchapter);
 
-        this.$router.push({path:'/comic/comicchapterimgs',query:{id:this.comic_id,num:item.num}});
+        this.$router.push({path:'/comic/chapterimgs',query:{id:this.comic_id,num:item.num}});
+
+
       }
     }
   }
