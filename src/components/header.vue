@@ -1,51 +1,49 @@
 <template>
   <div class="layout-header">
-    <div style="margin-top: 2px; background:transparent;">
-      <Menu mode="horizontal" theme="dark" active-name="1">
-        <Row type="flex" justify="center">
-          <Col :xs="3" :sm="1" :md="0" :lg="0"></Col>
-          <Col :xs="3" :sm="3" :md="4" :lg="3" style="display: flex;  justify-content: center">
-          <div class="layout-logo">
-            <a href="/">
-              <p><span>Zy</span>xin</p>
-            </a>
-          </div>
-          </Col>
-          <Col :xs="1" :sm="0" :md="0" :lg="0"></Col>
-          <Col :xs="17" :sm="12" :md="7" :lg="8">
-          <div class="layout-nav" style="width: 100%;">
-            <Row type="flex" justify="center">
-              <template v-for="item in header_nav_items">
-                <Col :xs="6" :sm="6" :md="6" :lg="6" style="display: flex; justify-content: center; ">
-                <router-link :to=item.path style="padding: 0 ;">
-                  <div class="header_nav" @click="toggle(header_nav_items,item)">
+    <div style="margin-top: 2px; background:transparent ;font-size: 14px;">
+      <Row type="flex" justify="center">
+        <Col :xs="3" :sm="1" :md="0" :lg="0"></Col>
+        <Col :xs="3" :sm="3" :md="4" :lg="3" style="display: flex;  justify-content: center">
+        <div class="layout-logo">
+          <a href="/">
+            <p><span>Zy</span>xin</p>
+          </a>
+        </div>
+        </Col>
+        <Col :xs="1" :sm="0" :md="0" :lg="0"></Col>
+        <Col :xs="17" :sm="12" :md="7" :lg="8">
+        <div class="layout-nav" style="width: 100%;">
+          <Row type="flex" justify="center">
+            <template v-for="item in header_nav_items">
+              <Col :xs="6" :sm="6" :md="6" :lg="6" style="display: flex; justify-content: center; ">
+              <router-link :to=item.path style="padding: 0 ;">
+                <div class="header_nav" @click="toggle(header_nav_items,item)">
                     <span :class="{ header_nav_active: item.isactive }">
                       <Icon :type=item.type></Icon> {{item.label}}
                     </span>
-                  </div>
-                </router-link>
-                </Col>
-              </template>
-            </Row>
-          </div>
-          </Col>
-          <Col :xs="0" :sm="8" :md="13" :lg="13">
-          <div class="layout-nav" style="float: right; ">
-            <template v-for="item in header_login_items">
-
-              <router-link :to=item.path style="padding: 0 15px;">
-                <div class="header_nav" @click="toggle(header_login_items,item)">
+                </div>
+              </router-link>
+              </Col>
+            </template>
+          </Row>
+        </div>
+        </Col>
+        <Col :xs="0" :sm="8" :md="13" :lg="13">
+        <div class="layout-nav" style="float: right; ">
+          <template v-for="item in header_login_items">
+            <router-link :to=item.path style="padding: 0 15px;">
+              <div class="header_nav" @click="toggle(header_login_items,item)">
                   <span style="font-size: 16px;padding: 0;">
                     <Icon :type=item.type></Icon>{{item.label}}
                   </span>
-                </div>
-              </router-link>
-            </template>
-          </div>
-          </Col>
-          <Col :xs="0" :sm="0" :md="0" :lg="0"></Col>
-        </Row>
-      </Menu>
+              </div>
+            </router-link>
+          </template>
+        </div>
+        </Col>
+        <Col :xs="0" :sm="0" :md="0" :lg="0"></Col>
+      </Row>
+
     </div>
   </div>
 </template>
@@ -81,27 +79,36 @@
     },
     created() {
       let that = this
-      that.initData()
+      that.initData();
+    },
+    computed: {},
+    watch: {
+      $route() {
+        //console.log(this.$route);
+        this.header_nav_items[0].isactive = true;
+        for (var i in this.header_nav_items) {
+          if (this.$route.name === this.header_nav_items[i].name) {
+            this.header_nav_items[i].isactive = true;
+          }
+          else {
+            this.header_nav_items[i].isactive = false;
+          }
+        }
+      }
     },
     methods: {
       initData: function () {
-        let that = this
-
-        if (this.$route.fullPath === "/") {
-          this.header_nav_items[0].isactive = true
+        for (var i = 0; i < this.header_nav_items.length; i++) {
+          if (this.$route.name === this.header_nav_items[i].name) {
+            this.header_nav_items[i].isactive = true;
+          }
+          else {
+            this.header_nav_items[i].isactive = false;
+          }
         }
-        else if (this.$route.fullPath === "/article") {
-          this.header_nav_items[1].isactive = true
-        }
-        else if (this.$route.fullPath === "/message") {
-          this.header_nav_items[2].isactive = true
-        }
-        else if (this.$route.fullPath === "/other") {
-          this.header_nav_items[3].isactive = true
-        }
-
       },
       toggle: function (items, item) {
+        //console.log(this.$route.fullPath);
         for (var x in items) {
           if (items[x] == item) {
             items[x].isactive = true;
@@ -110,11 +117,6 @@
             items[x].isactive = false;
           }
         }
-      },
-      linkChange: function (name) {
-        //console.log(name);
-        this.$router.push(name);
-
       }
     }
   }

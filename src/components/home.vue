@@ -8,7 +8,7 @@
         <Row type="flex">
           <template v-for="item in comicInfo">
             <Col :xs="12" :sm="8" :md="6" :lg="6">
-            <router-link to="" @click.native="linkChange(item)" class="">
+            <router-link :to="{path:'/comic/chapters',query:{id:item.id}}" class="">
               <div style="margin: 1%; width: 98%; padding: 1%; ">
                 <div>
                   {{item.name}}
@@ -50,16 +50,6 @@
         }).catch(function (response) {
           console.log(response);
         });
-      },
-      linkChange: function (item) {
-        //console.log(name);
-        //this.$route.push({path:'/xxx',query:{id:1}});//类似get传参，通过URL传递参数
-        //this.$route.push({path:'/xxx',params:{id:1}});//类似post传参
-        //接收参数
-        //this.$route.query.id
-        //this.$route.params.id
-        this.$router.push({path:'/comic/chapters',query:{id:item.id}});
-
       }
     }
   }
