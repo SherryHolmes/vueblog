@@ -58,7 +58,7 @@
 
 <style scoped>
   .pannal-board {
-    margin: 2%;
+    padding: 2%;
     background: #f3f3f3;
     border-radius: 4px;
     overflow: hidden;

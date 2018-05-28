@@ -85,7 +85,6 @@
     watch: {
       $route() {
         //console.log(this.$route);
-        this.header_nav_items[0].isactive = true;
         for (var i in this.header_nav_items) {
           if (this.$route.name === this.header_nav_items[i].name) {
             this.header_nav_items[i].isactive = true;

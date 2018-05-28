@@ -8,9 +8,9 @@
             <my-header></my-header>
           </div>
         </div>
-
+        <!--设置网页内容宽度最大1000px-->
         <div style="width: 100%; max-width: 1000px ; margin: 0 auto;">
-          <div style=" flex: auto;  padding: 2%; min-height: 100%; background: rgb(255, 255, 255);">
+          <div style="min-height: 100%; background: rgb(255, 255, 255);">
             <router-view></router-view>
           </div>
         </div>

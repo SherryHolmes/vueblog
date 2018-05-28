@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding: 2%;">
     <!--
         <div class="">
           <p class="small">留言区</p>

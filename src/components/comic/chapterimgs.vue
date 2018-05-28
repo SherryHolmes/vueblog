@@ -1,12 +1,16 @@
 <template>
   <div>
-
-    <template v-for="item in chapterimgs">
-
-      <img :src="item.url" width="100%"></img>
-
-    </template>
-
+    <div v-if="loading" class="loading" >
+      Loading...
+    </div>
+    <div v-if="error" class="error">
+      {{ error }}
+    </div>
+    <div v-if="chapterimgs" class="content">
+      <template v-for="item in chapterimgs">
+        <img :src="item.url" width="100%"></img>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -21,6 +25,9 @@
         comic_id: '',
         chapter_num: '',
         chapterimgs: '',
+        loading: false,
+        get: null,
+        error: null
 
       }
     },
@@ -32,37 +39,21 @@
     }, methods: {
       initData: function () {
         let that = this;
+        that.error = that.chapterimgs = null;
+        that.loading = true;
         axios({
           method: 'get',
           url: '/api/get_comic_chapter_imgInfo?id=' + this.comic_id + '&num=' + this.chapter_num,
         }).then(function (response) {
           that.chapterimgs = response.data;
+          that.loading = false;
           //console.log(that.chapterimgs);
         }).catch(function (response) {
+          that.error = response;
           console.log(response);
         });
       },
-      handleReachBottom: function () {
-        var imgs = '';
-        var num = 904 + 1;
-        return new Promise(resolve => {
-          axios({
-            method: 'get',
-            url: '/api/get_comic_chapter_imgInfo?id=' + this.comic_id + '&num=' + num,
-          }).then(function (response) {
-            imgs = response.data;
-          }).catch(function (response) {
-            console.log(response);
-          });
 
-          setTimeout(() => {
-            for (let i = 0; i < imgs.length; i++) {
-              this.chapterimgs.push(imgs[i]);
-            }
-            resolve();
-          }, 5000);
-        });
-      }
     }
   }
 </script>
