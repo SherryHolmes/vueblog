@@ -19,8 +19,7 @@
         </div>
         </Col>
       </Row>
-      <!--
-
+<!--
             &lt;!&ndash;带标签显示&ndash;&gt;
             <div v-if="comicChapters" style="padding: 2%;">
               <Tabs type="card">
@@ -43,10 +42,10 @@
                 </template>
               </Tabs>
             </div>
-      -->
+-->
 
 
-      <div v-if="comicChapters" style="padding: 2%;">
+      <div  v-if="loading2 == false" style="padding: 2%;">
         <Row type="flex">
           <template v-for="item in comicChapters">
             <Col :xs="12" :sm="8" :md="6" :lg="6" style="border: 1px solid  #f3f3f3">
@@ -81,6 +80,7 @@
         comic_id: '',
         baseurl: 'http://www.kuaikanmanhua.com',
         loading: false,
+        loading2: false,
         get: null,
         error: null
       }
@@ -94,11 +94,14 @@
         let that = this;
         that.error = that.comicInfo = that.chapterimgs = null;
         that.loading = true;
+        that.loading2 = true;
+
         axios({
           method: 'get',
           url: '/api/get_comicInfoByid?id=' + that.comic_id,
         }).then(function (response) {
           that.comicInfo = response.data[0];
+          that.loading = false;
         }).catch(function (response) {
           that.error = response;
           console.log(response);
@@ -109,7 +112,7 @@
           url: '/api/get_comic_chapterInfo?id=' + that.comic_id,
         }).then(function (response) {
           that.comicChapters = response.data;
-
+/*
           var chapternames = [];
           var count = 0;
           var i = 0;
@@ -130,9 +133,9 @@
               chapternames: chapternames,
             });
           }
+*/
+          that.loading2 = false;
 
-
-          that.loading = false;
         }).catch(function (response) {
           console.log(response);
         });
