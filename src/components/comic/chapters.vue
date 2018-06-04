@@ -9,7 +9,7 @@
     <div v-if="loading == false" class="">
       <Row type="flex">
         <Col :xs="24" :sm="12" :md="12" :lg="12">
-        <div style="max-width: 500px; padding: 2% ;"><img :src="comicInfo.posterurl" width="100%"></img></div>
+        <div style="max-width: 500px; padding: 2% ;"><img :src=comicInfo.posterurl width="100%"></img></div>
         </Col>
         <Col :xs="24" :sm="12" :md="12" :lg="12">
         <div style="padding: 2%;">
@@ -20,7 +20,7 @@
         </Col>
       </Row>
       <!--带标签显示-->
-      <div v-if="comicChapters" style="padding: 2%;">
+      <div v-if="loading2 == false" style="padding: 2%;">
         <Tabs type="card">
           <template v-for="tab in chapterArr">
             <TabPane :label="tab.tabname">

@@ -8,7 +8,7 @@
     </div>
     <div v-if="chapterimgs" class="content">
       <template v-for="item in chapterimgs">
-        <img :src="item.url" width="100%"></img>
+        <img :src=item.url width="100%"></img>
       </template>
       <div>
         <!--<router-link :to="{path:'/comic/chapterimgs',query:{id:comic_id,num:chapter_num+1}}" class="">-->
