@@ -19,48 +19,47 @@
         </div>
         </Col>
       </Row>
-<!--
-            &lt;!&ndash;带标签显示&ndash;&gt;
-            <div v-if="comicChapters" style="padding: 2%;">
-              <Tabs type="card">
-                <template v-for="tab in chapterArr">
-                  <TabPane :label="tab.tabname">
-                    <Row type="flex">
-                      <template v-for="item in tab.chapternames">
-                        <Col :xs="12" :sm="8" :md="6" :lg="6" style="border: 1px solid  #f3f3f3">
-                        <router-link :to="{path:'/comic/chapterimgs',query:{id:comic_id,num:item.num}}" class="">
-                          <div style="margin:5px 1px;">
-                            <div style="">
-                              {{item.title}}
-                            </div>
-                          </div>
-                        </router-link>
-                        </Col>
-                      </template>
-                    </Row>
-                  </TabPane>
+      <!--带标签显示-->
+      <div v-if="comicChapters" style="padding: 2%;">
+        <Tabs type="card">
+          <template v-for="tab in chapterArr">
+            <TabPane :label="tab.tabname">
+              <Row type="flex">
+                <template v-for="item in tab.chapternames">
+                  <Col :xs="12" :sm="8" :md="6" :lg="6" style="border: 1px solid  #f3f3f3">
+                  <router-link :to="{path:'/comic/chapterimgs',query:{id:comic_id,num:item.num}}" class="">
+                    <div style="margin:5px 1px;">
+                      <div style="">
+                        {{item.title}}
+                      </div>
+                    </div>
+                  </router-link>
+                  </Col>
                 </template>
-              </Tabs>
-            </div>
--->
-
-
-      <div  v-if="loading2 == false" style="padding: 2%;">
-        <Row type="flex">
-          <template v-for="item in comicChapters">
-            <Col :xs="12" :sm="8" :md="6" :lg="6" style="border: 1px solid  #f3f3f3">
-            <router-link :to="{path:'/comic/chapterimgs',query:{id:comic_id,num:item.num}}" class="">
-              <div style="margin:5px 1px; ">
-                <div style="">
-                  {{item.title}}
-                </div>
-              </div>
-            </router-link>
-            </Col>
+              </Row>
+            </TabPane>
           </template>
-        </Row>
+        </Tabs>
       </div>
 
+
+      <!--
+            <div  v-if="loading2 == false" style="padding: 2%;">
+              <Row type="flex">
+                <template v-for="item in comicChapters">
+                  <Col :xs="12" :sm="8" :md="6" :lg="6" style="border: 1px solid  #f3f3f3">
+                  <router-link :to="{path:'/comic/chapterimgs',query:{id:comic_id,num:item.num}}" class="">
+                    <div style="margin:5px 1px; ">
+                      <div style="">
+                        {{item.title}}
+                      </div>
+                    </div>
+                  </router-link>
+                  </Col>
+                </template>
+              </Row>
+            </div>
+      -->
 
     </div>
   </div>
@@ -109,10 +108,9 @@
 
         axios({
           method: 'get',
-          url: '/api/get_comic_chapterInfo?id=' + that.comic_id,
+          url: '/api/get_comic_chapterInfo?id=' + that.comic_id+'&order=' + 0,
         }).then(function (response) {
           that.comicChapters = response.data;
-/*
           var chapternames = [];
           var count = 0;
           var i = 0;
@@ -133,7 +131,7 @@
               chapternames: chapternames,
             });
           }
-*/
+
           that.loading2 = false;
 
         }).catch(function (response) {

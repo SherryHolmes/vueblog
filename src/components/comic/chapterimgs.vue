@@ -55,7 +55,6 @@
         }).then(function (response) {
           that.chapterimgs = response.data;
           that.loading = false;
-          //console.log(that.chapterimgs);
         }).catch(function (response) {
           that.error = response;
           console.log(response);
@@ -72,7 +71,6 @@
             for (var i = 0; i < response.data.length; i++) {
               that.chapterimgs.push(response.data[i]);
             }
-            console.log(that.chapterimgs);
           }).catch(function (response) {
             that.error = response;
             console.log(response);
