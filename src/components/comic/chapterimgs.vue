@@ -40,8 +40,8 @@
     },
     created() {
       this.comic_id = this.$route.query.id;
-      this.chapter_num = this.$route.query.num;
-      this.changeChapternum = this.$route.query.num;
+      this.chapter_num = parseInt(this.$route.query.num);
+      this.changeChapternum = this.chapter_num;
       let that = this;
       that.initData();
     }, methods: {
