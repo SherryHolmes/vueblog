@@ -1,10 +1,10 @@
 <template>
   <div>
-    <!--my-menu></my-menu-->
+    <my-menu></my-menu>
     <div class="layout">
       <div class="flex-direction-colum">
-        <div style="height: 64px; overflow: hidden; background:#495060; z-index: 8;">
-          <div style="margin: 0 auto; z-index: 9 ;max-width: 1000px;">
+        <div style="height: 48px; overflow: hidden; background:#495060; z-index: 8;">
+          <div style="margin:0 auto; z-index: 9 ;max-width: 1000px; overflow: hidden;">
             <my-header></my-header>
           </div>
         </div>
@@ -28,7 +28,7 @@
 
       <div class="flex-direction-colum">
         <div class="my-ivu-layout-footer">
-          <my-footer></my-footer>
+          <!--<my-footer></my-footer>-->
         </div>
       </div>
     </div>

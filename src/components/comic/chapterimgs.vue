@@ -11,9 +11,7 @@
         <img :src=item.url width="100%"></img>
       </template>
       <div>
-        <!--<router-link :to="{path:'/comic/chapterimgs',query:{id:comic_id,num:chapter_num+1}}" class="">-->
         <Button type="success" class="changebutton" v-on:click="tabs"> 点击加载更多</Button>
-        <!--</router-link>-->
       </div>
     </div>
 
