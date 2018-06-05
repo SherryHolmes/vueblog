@@ -96,7 +96,6 @@
     top: 48px;
     bottom: 0;
     z-index: 10;
-    min-width: 150px;
     min-height: 100%;
     background: transparent;
 
