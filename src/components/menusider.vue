@@ -6,12 +6,14 @@
       </div>
 
       <Sider ref="side1" hide-trigger collapsible :collapsed-width="0" v-model="isCollapsed "
-             :style="{background: '#fff'}">
+             :style="{background: 'transparent'}">
+
         <div v-if="isCollapsed === false">
           <div class="sidebar-overlay active" @click="collapsedSider()"></div>
         </div>
+
         <!--Menu active-name="1-2" theme="light" width="auto" min-height="1000" accordion :open-names="['1']"-->
-        <Menu theme="dark" :class="menuitemClasses" @on-select="changepage">
+        <Menu theme="dark" :class="menuitemClasses" width="10rem" @on-select="changepage">
           <MenuItem name="/">
             <Icon type="ios-home"></Icon>
             <span>首页</span>
@@ -29,20 +31,23 @@
             <span>其他</span>
           </MenuItem>
         </Menu>
-        <div style="width: 100%;height: 4px;background: #eee; overflow: hidden;">
-        </div>
-        <Menu theme="dark" :class="menuitemClasses">
-          <MenuItem name="5">
-            <Icon type="person"></Icon>
-            <span>登录</span>
-          </MenuItem>
-          <MenuItem name="6">
-            <Icon type="person-add"></Icon>
-            <span>注册</span>
-          </MenuItem>
 
-        </Menu>
+        <div style="width: 100%;height: 4px;background: transparent; overflow: hidden;">
+        </div>
+
+        <ul class="ivu-menu ivu-menu-dark ivu-menu-vertical menu-item" style="width: 10rem;">
+          <li class="ivu-menu-item">
+            <Icon type="ios-home"></Icon>
+            <span>登录</span>
+          </li>
+          <li class="ivu-menu-item">
+            <Icon type="ios-paper"></Icon>
+            <span>注册</span>
+          </li>
+        </ul>
+
       </Sider>
+
     </div>
   </div>
 </template>
@@ -89,6 +94,9 @@
 
 <style scoped>
 
+  .ivu-menu-dark {
+    background: #495060;
+  }
 
   .menu {
     position: fixed;
@@ -97,7 +105,7 @@
     bottom: 0;
     z-index: 10;
     min-height: 100%;
-    background: transparent;
+    #background: black;
 
   }
 
@@ -118,7 +126,8 @@
     transform: rotate(-90deg);
   }
 
-  .menu-item span {
+  .menu-item span,
+  span {
     display: inline-block;
     overflow: hidden;
     width: 69px;
@@ -128,7 +137,8 @@
     transition: width .2s ease .2s;
   }
 
-  .menu-item i {
+  .menu-item i,
+  i {
     transform: translateX(0px);
     transition: font-size .2s ease, transform .2s ease;
     vertical-align: middle;
