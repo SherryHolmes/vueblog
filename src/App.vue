@@ -3,7 +3,7 @@
     <my-menu></my-menu>
     <div class="layout">
       <div class="flex-direction-colum">
-        <div style="height: 48px; overflow: hidden; background:#495060; z-index: 8;">
+        <div style="height: 48px; overflow: hidden; background:#495060;">
           <div style="margin:0 auto; z-index: 9 ;max-width: 1000px; overflow: hidden;">
             <my-header></my-header>
           </div>
@@ -26,11 +26,11 @@
         </Row>
       </div>
 
-      <div class="flex-direction-colum">
+     <!-- <div class="flex-direction-colum">
         <div class="my-ivu-layout-footer">
-          <!--<my-footer></my-footer>-->
+          <my-footer></my-footer>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -62,6 +62,7 @@
     display: flex;
     flex-direction: column;
     flex: auto;
+
   }
 
   .flex-direction-row {
@@ -72,11 +73,10 @@
 
   .layout {
     border: 0px solid #d7dde4;
-    background: #f5f7f9;
+    background: transparent;
     position: relative;
     border-radius: 4px;
     overflow: hidden;
-
   }
 
   body {

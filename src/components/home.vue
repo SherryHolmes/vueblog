@@ -73,7 +73,7 @@
 <style scoped>
   .pannal-board {
     padding:0 2%;
-    background: #f3f3f3;
+    #background: #f3f3f3;
     border-radius: 4px;
     overflow: hidden;
   }

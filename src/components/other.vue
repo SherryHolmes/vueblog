@@ -1,5 +1,5 @@
 <template >
-  <div>
+  <div style="margin: 5px 10px">
     <h1><a href="/Port(V3.0).zip" download="Port(V3.0).zip">小南瓜串口下载</a></h1>
     <div class="editor">
       <h2>Md编辑器</h2>
@@ -19,7 +19,7 @@
     name: 'mainother',
     data() {
       return {
-        input: '# Input Markdown Code'
+        input: '# Hello world'
       }
     },
     computed: {
@@ -56,7 +56,6 @@
 
   .editarea {
     border: none;
-    border-right: 1px solid #ccc;
     resize: none;
     #outline: none;
     background-color: #f6f6f6;
