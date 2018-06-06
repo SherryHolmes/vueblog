@@ -76,6 +76,7 @@
     position: relative;
     border-radius: 4px;
     overflow: hidden;
+
   }
 
   body {

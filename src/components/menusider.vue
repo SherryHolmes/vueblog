@@ -12,7 +12,7 @@
           <div class="sidebar-overlay active" @click="collapsedSider()"></div>
         </div>
 
-        <!--Menu active-name="1-2" theme="light" width="auto" min-height="1000" accordion :open-names="['1']"-->
+        <!--
         <Menu theme="dark" :class="menuitemClasses" width="10rem" @on-select="changepage">
           <MenuItem name="/">
             <Icon type="ios-home"></Icon>
@@ -31,20 +31,67 @@
             <span>其他</span>
           </MenuItem>
         </Menu>
+        -->
+        <ul class="ivu-menu ivu-menu-dark ivu-menu-vertical menu-item" :class="menuitemClasses" style="width: 8rem;">
+          <template v-for="item in sider_items">
+            <router-link :to=item.path style="text-align: center">
+              <li class="ivu-menu-item" @click="changepage(item.path)">
+                <Icon :type=item.type></Icon>
+                <span>{{item.label}}</span>
+              </li>
+            </router-link>
+          </template>
+        </ul>
 
         <div style="width: 100%;height: 4px;background: transparent; overflow: hidden;">
         </div>
 
-        <ul class="ivu-menu ivu-menu-dark ivu-menu-vertical menu-item" style="width: 10rem;">
-          <li class="ivu-menu-item">
-            <Icon type="ios-home"></Icon>
-            <span>登录</span>
-          </li>
-          <li class="ivu-menu-item">
-            <Icon type="ios-paper"></Icon>
-            <span>注册</span>
-          </li>
-        </ul>
+        <div class="ivu-menu ivu-menu-dark ivu-menu-vertical menu-item" :class="menuitemClasses" style="width: 8rem;">
+
+          <div style="text-align: center" @click="userlogin = true">
+            <div class="ivu-menu-item">
+              <Icon type="ios-home"></Icon>
+              <span>登录</span>
+            </div>
+          </div>
+
+          <Modal v-model="userlogin" title="请登录" width="300">
+            <p>用户名</p>
+            <input type="text" placeholder="Username" name="username"
+                   v-model="userName"><br>
+            <p>密 码</p>
+            <input type="password" placeholder="Password" name="pwd"
+                   v-model="pwd"><br>
+            <div slot="footer">
+              <Button type="info" size="large" @click="login_regist">注册</Button>
+              <Button type="success" size="large" @click="login_login">登录</Button>
+            </div>
+          </Modal>
+
+          <div style="text-align: center" @click="userregist = true">
+            <div class="ivu-menu-item">
+              <Icon type="ios-paper"></Icon>
+              <span>注册</span>
+            </div>
+          </div>
+
+          <Modal v-model="userregist" title="请注册" width="300">
+            <p>用户名</p>
+            <input type="text" placeholder="Username" name="username"
+                   v-model="userName"><br>
+            <p>密 码</p>
+            <input type="password" placeholder="Password" name="pwd"
+                   v-model="pwd"><br>
+            <p>再次输入</p>
+            <input type="password" placeholder="Password" name="pwd2"
+                   v-model="pwd2"><br>
+            <div slot="footer">
+              <Button type="info" size="large" @click="regist_regist">注册</Button>
+              <Button type="success" size="large" @click="regist_login">登录</Button>
+            </div>
+          </Modal>
+        </div>
+
 
       </Sider>
 
@@ -55,10 +102,22 @@
 <script>
   import myMenu from './menusider.vue'
 
+
   export default {
     data() {
       return {
-        isCollapsed: true
+        userName: '',
+        pwd: '',
+        pwd2: '',
+        isCollapsed: true,
+        sider_items: [
+          {label: '首页', type: 'ios-home', isactive: false, path: '/', name: 'home'},
+          {label: '文章', type: 'ios-paper', isactive: false, path: '/article', name: 'article'},
+          {label: '留言', type: 'ios-compose', isactive: false, path: '/message', name: 'message'},
+          {label: '其他', type: 'ios-crop-strong', isactive: false, path: '/other', name: 'other'},
+        ],
+        userlogin: false,
+        userregist: false,
       }
     },
     computed: {
@@ -79,24 +138,34 @@
       collapsedSider() {
         this.$refs.side1.toggleCollapse();
       },
-      changepage: function (name) {
-        this.$router.push(name);
+      changepage: function (path) {
+        this.$router.push(path);
         this.collapsedSider();
+      },
+      login_login() {
+        this.$Message.info('暂时不接受登录');
+      },
+      login_regist() {
+        this.userregist = true;
+        this.userlogin = false;
+      },
+      regist_login() {
+        this.userregist = false;
+        this.userlogin = true;
+      },
+      regist_regist() {
+        this.$Message.info('暂时不接受登录');
       }
-
     },
     components: {
       myMenu,
+
     }
   }
 </script>
 
 
 <style scoped>
-
-  .ivu-menu-dark {
-    background: #495060;
-  }
 
   .menu {
     position: fixed;
@@ -126,19 +195,37 @@
     transform: rotate(-90deg);
   }
 
-  .menu-item span,
-  span {
+  .ivu-menu-vertical .ivu-menu-item,
+  .ivu-menu-vertical .ivu-menu-submenu-title {
+    #padding: 14px 24px;
+    padding: 10px 0;
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+    transition: all .2s ease-in-out;
+  }
+
+  .ivu-menu-vertical .ivu-menu-item:hover,
+  .ivu-menu-vertical .ivu-menu-submenu-title:hover {
+    color: #fff;
+    background: #495060;
+  }
+
+  .ivu-menu-dark {
+    background: rgba(70, 80, 96, .6);
+  }
+
+  .menu-item span {
     display: inline-block;
     overflow: hidden;
-    width: 69px;
+    width: 60px;
     text-overflow: ellipsis;
     white-space: nowrap;
     vertical-align: bottom;
     transition: width .2s ease .2s;
   }
 
-  .menu-item i,
-  i {
+  .menu-item i {
     transform: translateX(0px);
     transition: font-size .2s ease, transform .2s ease;
     vertical-align: middle;
@@ -178,4 +265,14 @@
 
   }
 
+  .ivu-modal p {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+  }
+
+  .ivu-modal input {
+    margin: 5px 0;
+    border: 1px solid #e9eaec;
+  }
 </style>

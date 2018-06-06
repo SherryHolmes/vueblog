@@ -20,6 +20,7 @@
         </template>
       </div>
 
+<!--
       <div class="layout-nav" style="float: right; ">
         <template v-for="item in header_login_items">
           <router-link to="">
@@ -31,6 +32,7 @@
           </router-link>
         </template>
       </div>
+-->
 
 
   </div>

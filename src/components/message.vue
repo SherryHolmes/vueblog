@@ -58,7 +58,7 @@
     name: 'messagge',
     data() {
       return {
-        message_list: '',
+        message_list: [],
         edittext: '',
         editauthor: '',
         editdate: '',
