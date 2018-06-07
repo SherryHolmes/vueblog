@@ -28,36 +28,50 @@
           }
         }
     -->
+
     <h1 style="margin-left: 5%">留言板</h1>
-    <div v-for="item in message_list">
-      <div class="commonboard">
-        <div class="title">
-          <div class="author">{{item.author}} :</div>
-          <div class="date">{{item.date}}</div>
-        </div>
-        <div>
-          <Input type="textarea" class="contnt" readonly :placeholder="item.message"
-                 :autosize="{minRows: 1,maxRows: 20}"> </Input>
-          <Button class="request">回复</Button>
+    <div class="editboard">
+      <!--<h2 style="margin: 1% 3%">留言区</h2>-->
+      <Input type="textarea" class="editarea" @on-focus="editfocus" @on-blur="editblur" v-model="edittext"
+             :rows=editarea_rows placeholder="我也要说点什么..."> </Input>
+
+
+      <template v-if="submitbutton_flag">
+        <Button type="success" class="submitbutton" v-on:click="tabs">提交留言</Button>
+      </template>
+    </div>
+    <div v-if="message_flag">
+
+      <div v-for="item in message_list">
+        <div class="commonboard">
+          <div class="title">
+            <div class="author">{{item.author}} :</div>
+            <div class="date">{{item.date}}</div>
+          </div>
+          <div>
+            <Input type="textarea" class="contnt" readonly :placeholder="item.message"
+                   :autosize="{minRows: 1,maxRows: 20}"> </Input>
+            <Button class="request">回复</Button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="editboard">
-      <h2 style="margin: 1% 3%">留言区</h2>
-      <Input type="textarea" class="editarea" v-model="edittext" :autosize="{minRows: 9,maxRows: 9}"
-             placeholder="请输入留言信息..."> </Input>
-      <Button type="success" class="submitbutton" v-on:click="tabs">提交留言</Button>
-    </div>
+
   </div>
 </template>
 
 <script>
   import axios from 'axios'
 
+
   export default {
     name: 'messagge',
     data() {
       return {
+        message_flag: false,
+        submitbutton_flag: false,
+        editarea_rows: 1,//{minRows: 1,maxRows: 9},
+        editarea_flag: true,
         message_list: [],
         edittext: '',
         editauthor: '',
@@ -68,7 +82,9 @@
         value8: ''
       }
     },
-    components: {},
+    components: {
+
+    },
     created() {
       let that = this;
       that.initData();
@@ -82,7 +98,8 @@
           url: '/api/get_messageList',
         }).then(function (response) {
           //console.log(response);
-          that.message_list = response.data
+          that.message_list = response.data;
+          that.message_flag = true;
         }).catch(function (response) {
           console.log(response);
         });
@@ -95,7 +112,11 @@
         return (zero + num).slice(-digit);
       },
       tabs: function () {
-        let that = this
+        let that = this;
+        if (that.edittext === '') {
+          that.$Message.success('留言不能为空哦');
+          return;
+        }
         var cd = new Date();
         that.ctime = this.zeroPadding(cd.getHours(), 2) + ':' + this.zeroPadding(cd.getMinutes(), 2) + ':' + this.zeroPadding(cd.getSeconds(), 2);
         that.cdate = this.zeroPadding(cd.getFullYear(), 4) + '-' + this.zeroPadding(cd.getMonth() + 1, 2) + '-' + this.zeroPadding(cd.getDate(), 2);
@@ -118,19 +139,16 @@
           if (response.status == '200') {
             self.classFade = '';
             self.errinfo = '留言成功！';
-            var datamsg = [{
+            var datamsg = {
               author: that.editauthor,
               date: that.editdate,
               message: that.edittext,
-            }];
-            //that.message_list = datamsg+that.message_list;
-            var temp_list = that.message_list;
-            that.message_list = datamsg;
-            for( var i =0 ;i<temp_list.length ;i++){
-              that.message_list.push(temp_list[i]);
-            }
-            //that.message_list.push(datamsg);
-            that.$Message.success('留言成功啦，在最顶部哦~');
+            };
+            that.message_list.unshift(datamsg);
+            that.message_flag = true;
+            that.edittext = '';
+            that.$Message.success('留言成功啦~');
+
           }
           else {
             self.classFade = '';
@@ -144,6 +162,14 @@
         //this.initData();
 
       },
+      editfocus: function () {
+        this.submitbutton_flag = true;
+        this.editarea_rows = 9;
+      },
+      editblur: function () {
+        this.submitbutton_flag = false;
+        this.editarea_rows = 1;
+      }
     }
 
   }
@@ -193,7 +219,6 @@
 
   .editboard {
     margin: 2%;
-
     background: #f3f3f3;
     border-radius: 4px;
     width: 96%;
@@ -201,16 +226,19 @@
   }
 
   .editboard .editarea {
-    margin: 0 2%;
-    resize: none;
+    margin: 2%;
     width: 96%;
     max-width: 96%;
-    height: 200px;
+    #height: 200px;
     #max-height: 600px;
     font-size: 14px;
     font-family: Tahoma, Verdana, 宋体, Fixedsys;
     line-height: 150%;
     overflow-y: visible;
+  }
+
+  .editboard .editarea textarea {
+    resize: none !important;
   }
 
   .commonboard .request {
