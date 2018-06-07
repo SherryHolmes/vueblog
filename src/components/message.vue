@@ -95,11 +95,12 @@
         return (zero + num).slice(-digit);
       },
       tabs: function () {
+        let that = this
         var cd = new Date();
-        this.ctime = this.zeroPadding(cd.getHours(), 2) + ':' + this.zeroPadding(cd.getMinutes(), 2) + ':' + this.zeroPadding(cd.getSeconds(), 2);
-        this.cdate = this.zeroPadding(cd.getFullYear(), 4) + '-' + this.zeroPadding(cd.getMonth() + 1, 2) + '-' + this.zeroPadding(cd.getDate(), 2);
-        this.editauthor = '游客';
-        this.editdate = this.cdate + ' ' + this.ctime;
+        that.ctime = this.zeroPadding(cd.getHours(), 2) + ':' + this.zeroPadding(cd.getMinutes(), 2) + ':' + this.zeroPadding(cd.getSeconds(), 2);
+        that.cdate = this.zeroPadding(cd.getFullYear(), 4) + '-' + this.zeroPadding(cd.getMonth() + 1, 2) + '-' + this.zeroPadding(cd.getDate(), 2);
+        that.editauthor = '游客';
+        that.editdate = this.cdate + ' ' + this.ctime;
         //console.log(this.editauthor);
         //console.log(this.editdate);
         //console.log(this.edittext);
@@ -107,9 +108,9 @@
           method: 'post',
           url: 'api/write_message',
           data: {
-            author: this.editauthor,
-            date: this.editdate,
-            message: this.edittext,
+            author: that.editauthor,
+            date: that.editdate,
+            message: that.edittext,
           },
           timeout: 3000
         }).then(function (response) {
@@ -117,6 +118,19 @@
           if (response.status == '200') {
             self.classFade = '';
             self.errinfo = '留言成功！';
+            var datamsg = [{
+              author: that.editauthor,
+              date: that.editdate,
+              message: that.edittext,
+            }];
+            //that.message_list = datamsg+that.message_list;
+            var temp_list = that.message_list;
+            that.message_list = datamsg;
+            for( var i =0 ;i<temp_list.length ;i++){
+              that.message_list.push(temp_list[i]);
+            }
+            //that.message_list.push(datamsg);
+            that.$Message.success('留言成功啦，在最顶部哦~');
           }
           else {
             self.classFade = '';
@@ -127,7 +141,7 @@
           self.classFade = '';
           self.errinfo = '服務器繁忙，請刷新頁面或者稍後重試!(Error code: 504)'
         });
-        this.initData();
+        //this.initData();
 
       },
     }
